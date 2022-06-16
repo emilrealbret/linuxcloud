@@ -4,13 +4,13 @@ sudo yum clean all
 sudo yum update -y
 
 #Apache install
-sudo yum install httpd -y 
+sudo yum install httpd -y
 
 #Start and enable Apache
-sudo systemctl start httpd 
+sudo systemctl start httpd
 sudo systemctl enable httpd
 
-#Open for Apache in firewall 
+#Open for Apache in firewall
 sudo firewall-cmd --permanent --zone=public --add-service=http --add-service=https
 sudo firewall-cmd --reload
 
@@ -18,7 +18,7 @@ sudo firewall-cmd --reload
 curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
 sudo yum install MariaDB-server -y
 
-#Start and enable Mariadb 
+#Start and enable Mariadb
 sudo systemctl start mysql
 sudo systemctl enable mysql
 
@@ -47,7 +47,7 @@ sudo ./install.sh --bundle LAMP -y
 
 #Create virtualmin domain
 domainname=linuxcloud.bounceme.net
-sudo virtualmin create-domain --domain $domainname --pass "Kode1234!!!!" --hashpass --desc "The server for foo" --unix --dir --webmin --web --dns --mail --mysql --ssl
+sudo virtualmin create-domain --domain $domainname --pass "Kode1234!!!!" --hashpass --desc "Virtualmin server with wordpress and phpmyadmin" --unix --dir --webmin --web --dns --mail --mysql --ssl
 
 #Run install scripts on domain for php and wordpress
 sudo virtualmin install-script --domain $domainname --type phpmyadmin --version "latest" --path /phpmyadmin
