@@ -11,7 +11,7 @@ sudo systemctl start httpd
 sudo systemctl enable httpd
 
 #Open for Apache in firewall 
-sudo firewall-cmd --permanent --zone=public --add-service=http--add-service=https
+sudo firewall-cmd --permanent --zone=public --add-service=http --add-service=https
 sudo firewall-cmd --reload
 
 #Mariadb install
@@ -46,7 +46,7 @@ sudo chmod +x install.sh
 sudo ./install.sh --bundle LAMP -y
 
 #Create virtualmin domain
-domainname=finalserver.cloud
+domainname=linuxcloud.bounceme.net
 sudo virtualmin create-domain --domain $domainname --pass "Kode1234!!!!" --hashpass --desc "The server for foo" --unix --dir --webmin --web --dns --mail --mysql --ssl
 
 #Run install scripts on domain for php and wordpress
