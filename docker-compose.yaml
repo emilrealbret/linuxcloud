@@ -43,4 +43,4 @@ services:
       - "./:/var/www/html/phpmyadmin"
       
 volumes:
-  mysql {}
+  mysql: {}
