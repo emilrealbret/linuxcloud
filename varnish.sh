@@ -23,7 +23,7 @@ sudo yum install varnish -y
 sudo systemctl enable --now varnish
 
 #Change from port 6081 to port 80
-sed -i 's/ExecStart=/usr/sbin/varnishd -a :6081 -f /etc/varnish/default.vcl -s malloc,256m/ExecStart=/usr/sbin/varnishd -a :80 -f /etc/varnish/default.vcl -s malloc,256m/' /usr/lib/systemd/system/varnish.service
+sudo sed -i 's+ExecStart=/usr/sbin/varnishd -a :6081 -f /etc/varnish/default.vcl -s malloc,256m+ExecStart=/usr/sbin/varnishd -a :80 -f /etc/varnish/default.vcl -s malloc,256m+' /usr/lib/systemd/system/varnish.service
 
 sudo systemctl daemon-reload
 sudo systemctl restart varnish
