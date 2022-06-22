@@ -1,6 +1,9 @@
 #!/bin/bash
-#Install Varnish
 
+#change apache listening port to 8080 from 80
+sed -i 's/Listen 80/Listen 8080/' /etc/httpd/conf/httpd.conf
+
+#Install Varnish
 #Add the EPEL erposiroty
 sudo yum install epel-release -y
 
@@ -8,21 +11,7 @@ sudo yum install epel-release -y
 sudo yum install pygame yum-utils -y
 
 #Add the Varnish Cache repository
-sudo cat << EOF > /etc/yum.repos.d/varnish60lts.repo
-[varnish60lts]
-name=varnishcache_varnish60lts
-baseurl=https://packagecloud.io/varnishcache/varnish60lts/el/7/x86_64
-repo_gpgcheck=1
-gpgcheck=0
-enabled=1
-gpgkey=https://packagecloud.io/varnishcache/varnish60lts/gpgkey
-sslverify=1
-sslcacert=/etc/pki/tls/certs/ca-bundle.crt
-metadata_expire=300
-EOF
-
-#Update the yum cachce for the Varnish repo
-sudo yum -q makecache -y --disablerepo='*' --enabledrepo'varnish60lts'
+curl -s https://packagecloud.io/install/repositories/varnishcache/varnish62/script.rpm.sh | sudo bash
 
 #Install Varnish
 sudo yum install varnish -y
@@ -38,3 +27,6 @@ sed -i 's/ExecStart=/usr/sbin/varnishd -a :6081 -f /etc/varnish/default.vcl -s m
 
 sudo systemctl daemon-reload
 sudo systemctl restart varnish
+
+#Restart apache
+sudo systemctl restart httpd

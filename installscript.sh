@@ -10,6 +10,10 @@ sudo yum install httpd -y
 sudo systemctl start httpd
 sudo systemctl enable httpd
 
+#Start firewalld
+sudo systemctl start firewalld
+sudo systemctl enable firewalld
+
 #Open for Apache in firewall
 sudo firewall-cmd --permanent --zone=public --add-service=http --add-service=https
 sudo firewall-cmd --reload
