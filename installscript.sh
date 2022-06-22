@@ -27,7 +27,7 @@ sudo cat << EOF > /etc/yum.repos.d/webmin.repo
 [Webmin]
 name=Webmin Distribution Neutral
 #baseurl=http://download.webmin.com
-mirrorlist=http://download.webmin,com/download/yum/mirrorlist
+mirrorlist=http://download.webmin.com/download/yum/mirrorlist
 enabled=1
 EOF
 sudo yum install wget -y
